@@ -3,6 +3,7 @@ require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
+  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
   host:     !process.env.DATABASE_URL ? (process.env.DB_HOST || 'localhost') : undefined,
   port:     !process.env.DATABASE_URL ? parseInt(process.env.DB_PORT || '5432', 10) : undefined,
   database: !process.env.DATABASE_URL ? (process.env.DB_NAME || 'smartseason') : undefined,
