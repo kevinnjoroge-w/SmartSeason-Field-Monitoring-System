@@ -1,88 +1,76 @@
-# SmartSeason Field Monitoring System
+# 🌾 SmartSeason Field Monitoring System
 
-A full-stack crop tracking platform built with React, Node.js + Express, and PostgreSQL, designed to help agricultural coordinators (Admins) and Field Agents monitor field stages and log observations during a growing season.
+SmartSeason is a streamlined, data-driven crop tracking platform designed for modern agriculture. It empowers agricultural coordinators and field agents to monitor crop progress, identify risks early, and maintain detailed observation logs throughout the growing season.
 
-## Local Setup Instructions
+Built for efficiency and high-fidelity monitoring, SmartSeason bridges the gap between the field and the office.
+
+---
+
+## ✨ Key Features
+
+- **Dynamic Field Tracking**: Real-time status Monitoring (Active, At Risk, Completed) based on growth stages and planting timelines.
+- **Role-Based Access**: Specialized dashboards for Admins (Coordinators) and Field Agents.
+- **Interactive Timelines**: Log detailed field observations and visual stage transitions.
+- **Modern Aesthetics**: A bespoke design system using earthy greens and clay ambers, tailored for an intuitive agricultural experience.
+- **Intelligent Risk Detection**: Automated "At Risk" flags for fields showing stagnant growth in early stages.
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (v18+)
-- PostgreSQL active database
+- **Node.js** (v18 or higher)
+- **PostgreSQL** (Local or Cloud instance)
 
 ### 1. Installation
-
-Clone this repository and install all dependencies from the root directory:
-
+Install all dependencies for the entire monorepo with a single command:
 ```bash
 npm run install:all
 ```
-*(This installs packages for the root, server, and client concurrently)*
 
-### 2. Environment Variables
-
-In the `server/` directory, create a `.env` file (or Postgres will fallback to defaults `localhost:5432` / `postgres`):
-
+### 2. Configuration
+Create a `.env` file in the `server/` directory:
 ```env
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=smartseason
-DB_USER=postgres
-DB_PASSWORD=your_postgres_password
-JWT_SECRET=super_secret_jwt_key_123
+DATABASE_URL=postgres://user:password@localhost:5432/smartseason
+JWT_SECRET=your_secure_secret_here
 PORT=5000
 ```
 
-### 3. Database Setup & Seeding
-
-Ensure your local PostgreSQL instance is running. Then, run the seed script which drops existing tables, creates the schema, and populates the database with demo users, fields, and updates.
-
+### 3. Database Initialization
+Prepare your database schema and seed initial data:
 ```bash
-# from the root folder
 npm run seed
 ```
 
-### 4. Running the Application
-
-Start both the backend server and frontend development server concurrently from the root directory:
-
+### 4. Development
+Launch both the API and the Frontend concurrently:
 ```bash
 npm run dev
 ```
-
-- **Client:** `http://localhost:5173`
-- **Server:** `http://localhost:5000`
-
----
-
-## Field Status Logic
-
-The status of a field is **computed entirely on the fly** when data is fetched, rather than stored persistently. It is derived using the following logic hierarchy:
-
-1. **Completed**: The field's current stage is `Harvested`.
-2. **At Risk**: The field's stage is `Planted` or `Growing` **AND** the planting date is more than 90 days ago. (This implies it's stuck in early stages without progressing).
-3. **Active**: If neither of the above conditions apply.
-
-This logic is encapsulated cleanly in the backend inside `server/utils/statusHelper.js` to adhere to separation of concerns.
+- **Platform**: `http://localhost:5173`
+- **API Server**: `http://localhost:5000`
 
 ---
 
-## Design Decisions & Assumptions
+## 📐 Architecture & Design
 
-- **Architecture:** Monorepo using `concurrently` for easy development.
-- **Backend Simplicity:** We used raw `pg` queries avoiding heavy ORMs like Prisma to keep the footprint strictly minimal as requested.
-- **UI & Aesthetics:** Tailwind CSS v4 was configured strictly to meet the "No default UI library" constraint. We implemented a custom `DM Sans` font, disabled all drop shadows site-wide (`@theme { --shadow-sm: none; ... }`), and used a curated Earthy Green and Amber color palette.
-- **No Component Logic:** All API fetching is abstracted into hook-agnostic functions inside `client/src/services/api.js`. Components strictly handle presentation and local form state.
+### Intelligent Status Derivation
+SmartSeason features a computed status logic that ensures data integrity by deriving field health in real-time:
+- **Completed**: Crops successfully harvested.
+- **At Risk**: Crops in 'Planted' or 'Growing' stages for >90 days without progression.
+- **Active**: Healthy, ongoing growth cycles.
+
+### Tech Stack
+- **Frontend**: React + Vite + Tailwind CSS v4
+- **Backend**: Node.js + Express
+- **Database**: PostgreSQL (Raw SQL for performance and simplicity)
+- **Security**: JWT-based authentication with Bcrypt hashing
 
 ---
 
-## Demo Credentials
+## 🛠 Deployment
+The system is optimized for deployment on modern cloud platforms:
+- **API/Database**: Render
+- **Frontend**: Vercel
 
-You can test the application using the following roles (pre-seeded):
-
-**Admin (Coordinator):**
-- **Email:** `admin@smartseason.com`
-- **Password:** `admin123`
-
-**Field Agent:**
-- **Email:** `agent@smartseason.com`
-- **Password:** `agent123`
-# SmartSeason-Field-Monitoring-System
+*Ensure `VITE_API_URL` and `FRONTEND_URL` environment variables are configured for cross-origin production communication.*
