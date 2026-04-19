@@ -83,13 +83,6 @@ export const Login = () => {
           </button>
         </form>
 
-        <div className="mt-8 pt-6 border-t border-earth-200 text-sm text-earth-600">
-          <p className="font-medium mb-2">Demo Credentials:</p>
-          <ul className="space-y-1">
-            <li>Admin: admin@smartseason.com / admin123</li>
-            <li>Agent: agent@smartseason.com / agent123</li>
-          </ul>
-        </div>
       </div>
     </div>
   );
