@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-// Base API URL maps to the Vite proxy configured in vite.config.js
-const API_URL = '/api';
+// Base API URL maps to the Vite proxy configured in vite.config.js for local dev
+// For production, it uses VITE_API_URL set in the Vercel dashboard.
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 export const api = axios.create({
   baseURL: API_URL,
