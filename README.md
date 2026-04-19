@@ -1,4 +1,4 @@
-# 🌾 SmartSeason Field Monitoring System
+# SmartSeason Field Monitoring System
 
 SmartSeason is a streamlined, data-driven crop tracking platform designed for modern agriculture. It empowers agricultural coordinators and field agents to monitor crop progress, identify risks early, and maintain detailed observation logs throughout the growing season.
 
@@ -6,7 +6,7 @@ Built for efficiency and high-fidelity monitoring, SmartSeason bridges the gap b
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 - **Dynamic Field Tracking**: Real-time status Monitoring (Active, At Risk, Completed) based on growth stages and planting timelines.
 - **Role-Based Access**: Specialized dashboards for Admins (Coordinators) and Field Agents.
@@ -16,7 +16,7 @@ Built for efficiency and high-fidelity monitoring, SmartSeason bridges the gap b
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - **Node.js** (v18 or higher)
@@ -52,7 +52,7 @@ npm run dev
 
 ---
 
-## 📐 Architecture & Design
+## Architecture & Design
 
 ### Intelligent Status Derivation
 SmartSeason features a computed status logic that ensures data integrity by deriving field health in real-time:
@@ -68,7 +68,7 @@ SmartSeason features a computed status logic that ensures data integrity by deri
 
 ---
 
-## 🛠 Deployment
+## Deployment
 The system is optimized for deployment on modern cloud platforms:
 - **API/Database**: Render
 - **Frontend**: Vercel
